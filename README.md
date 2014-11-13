@@ -79,6 +79,18 @@ Example:
 <div class="name">Georges</div>
 ```
 
+## Alpha.ui.loadCSS
+If you want to use the following Alpha.ui components, you can load dynamically a stylesheet by using the method **Alpha.ui.loadCSS()**.
+The stylesheets contains the work of [Daneden](http://github.com/Daneden) called **animate.css**.
+You should really check it out: <http://daneden.github.io/animate.css/>, it's pretty awesome.
+
+This method calls another called: **Alpha.ui.loadStylesheet** that you can use to dynamically load CSS files.
+
+```javascript
+	Alpha.ui.loadCSS();
+	Alpha.ui.loadStylesheet('http://rawgit.com/daneden/animate.css/master/animate.css');
+```
+
 ## Alpha.ui.Button
 Buttons are very important in a web application. So, it's very understandable to have an easy way to manage them. AlphaJS provides this way with Alpha.ui.Button
 
