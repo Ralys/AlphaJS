@@ -27,7 +27,7 @@ You can easily create a class by giving the following information :
 - **parents** (optional), array of constructors for multi-inheritence
 - **properties**, the attributes and methods of the class. The methods will be put in the prototype of the class.
 - **strict** (optional), boolean: if true, you won't be able to add new property to an instance of this class
-- **init**, function that will be executed when an object is created
+- **init** (optional), function that will be executed when an object is created
 
 Every generated class contains the following methods:
 1. get returns one or several attributes (excepting methods). It can be useful when you want to exchange JSON data;
