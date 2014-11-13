@@ -66,7 +66,7 @@ var element = new Alpha.ui.Element({
 		...
 	},
 
-	onHide_effect: : function() {
+	onHide_effect: function() {
 		...
 	},
 });
