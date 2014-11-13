@@ -439,7 +439,7 @@
 	var $document = $(document);
 
 	/* Stylesheet loaders */
-	var alphajs_css_url = 'stylesheets/alphajs.min.css';
+	var alphajs_css_url = 'http://rawgit.com/ralys/alphajs/master/stylesheets/alphajs.min.css';
 
 	/**
 	 * [loadStylesheet description]
