@@ -4,7 +4,7 @@ AlphaJS
 AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience.
 Alpha.ui contains classes and builders for graphical components.
 
-Website: <http://ralys.github.io/AlphaJS>
+Website: <http://ralys.github.io/alphajs>
 
 Dependencies: jQuery
 
@@ -148,4 +148,4 @@ Alpha.ui.SideBox.showAll();
 ## Alpha.ui.SearchWidget
 This is a specific component that implements a search process. By ticking a result, you will add it to the guests list.
 
-Please check the [website](http://ralys.github.io/AlphaJS/#alpha.ui.searchwidget) for more information.
+Please check the [website](http://ralys.github.io/alphajs/#alpha.ui.searchwidget) for more information.
