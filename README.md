@@ -84,7 +84,7 @@ If you want to use the following Alpha.ui components, you can load dynamically a
 The stylesheets contains the work of [Daneden](http://github.com/Daneden) called **animate.css**.
 You should really check it out: <http://daneden.github.io/animate.css/>, it's pretty awesome.
 
-This method calls another called: **Alpha.ui.loadStylesheet** that you can use to dynamically load CSS files.
+This method calls another named: **Alpha.ui.loadStylesheet** that you can use to dynamically load CSS files.
 
 ```javascript
 	Alpha.ui.loadCSS();
