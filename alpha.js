@@ -478,7 +478,7 @@
 	 * @return void
 	 */
 	Alpha.ui.effects.js = function(name, $el, complete) {
-		if(Alpha.ui.effects.js.allEffects.indexOf(name) != -1) {
+		if(Alpha.ui.effects.js.all.indexOf(name) != -1) {
 			jQuery.fn[name].call($el, complete);
 		} else {
 			throw new AlphaError('[Alpha.ui.effects.js] "'+name+'" is not a jQuery effect');
@@ -486,13 +486,13 @@
 	};
 
 	/**
-	 * [allEffects description]
+	 * [all description]
 	 * Contains all JS effects available
 	 * 
 	 * @type Array
 	 * 
 	 */
-	Alpha.ui.effects.js.allEffects = ['fadeIn', 'fadeOut', 'slideUp', 'slideDown', 'slideToggle', 'toggle'];
+	Alpha.ui.effects.js.all = ['fadeIn', 'fadeOut', 'slideUp', 'slideDown', 'slideToggle', 'toggle'];
 	/* End of JS effects */
 
 	/**
@@ -505,7 +505,7 @@
 	 * @return void
 	 */
 	Alpha.ui.effects.css = function(name, $el, complete) {
-		if(Alpha.ui.effects.css.allEffects.indexOf(name) != -1) {
+		if(Alpha.ui.effects.css.all.indexOf(name) != -1) {
 			$el.addClass(name+' animated').one(Alpha.ui.effects.css.event, complete);
 		} else {
 			throw new AlphaError('[Alpha.ui.effects.css] "'+name+'" is not a jQuery effect');
@@ -521,12 +521,12 @@
 	Alpha.ui.effects.css.event = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 	
 	/**
-	 * [allEffects description]
+	 * [all description]
 	 * Contains all CSS effects available
 	 * 
 	 * @type Array
 	 */
-	Alpha.ui.effects.css.allEffects = ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp', 'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'fadeOut', 'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 'fadeOutRightBig', 'fadeOutUp', 'fadeOutUpBig', 'flip', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY', 'lightSpeedIn', 'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight', 'hinge', 'rollIn', 'rollOut', 'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp'];
+	Alpha.ui.effects.css.all = ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp', 'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'fadeOut', 'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 'fadeOutRightBig', 'fadeOutUp', 'fadeOutUpBig', 'flip', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY', 'lightSpeedIn', 'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight', 'hinge', 'rollIn', 'rollOut', 'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp'];
 	/* End of CSS effects */
 
 	/**
@@ -759,6 +759,7 @@
 
 				if(this.$container == Alpha.ui.singletons.$body) {
 					this.$overlay.css('position', 'fixed');
+					this.$el.css('top', $(window).scrollTop()+20);
 				}
 
 				this.$container.css('overflow', 'hidden')
@@ -766,7 +767,6 @@
 					e.preventDefault();
 				});
 
-				this.$el.css('top', '20px');
 				Alpha.ui.effects.css('bounceInDown', this.$el);
 			},
 
