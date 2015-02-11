@@ -508,7 +508,7 @@
 		if(Alpha.ui.effects.css.all.indexOf(name) != -1) {
 			$el.addClass(name+' animated').one(Alpha.ui.effects.css.event, complete);
 		} else {
-			throw new AlphaError('[Alpha.ui.effects.css] "'+name+'" is not a jQuery effect');
+			throw new AlphaError('[Alpha.ui.effects.css] "'+name+'" is not a CSS effect registered');
 		}
 	};
 
