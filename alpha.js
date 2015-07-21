@@ -94,7 +94,7 @@
 		 * @param  array models, array of constructors
 		 * @return void
 		 */
-		extend: function(models) {
+		extend: function(models, data) {
 			// parameter must be an array
 			if(!(models instanceof Array)) throw new AlphaError("[extend] Parents must be an array");
 
@@ -106,7 +106,7 @@
 					
 					if(model != null) {
 						// call model constructor
-						model.call(this);
+						model.call(this, data);
 					}
 				}
 			}
@@ -289,7 +289,7 @@
 		 */
 		var constructor = function(data) {
 			// if inheritance
-			if(def.parents != null) _functions.extend.call(this, def.parents);
+			if(def.parents != null) _functions.extend.call(this, def.parents, data);
 
 			// add attributes
 			_functions.hydrate.call(this, properties.attributes);
