@@ -188,9 +188,10 @@ Alpha.ui.loadStylesheet(<span class="pl-s"><span class="pl-pds">'</span>http://r
 
 <p>Example:</p>
 
-<div class="highlight highlight-javascript"><pre>Alpha.ui.effects.css(<span class="pl-s"><span class="pl-pds">'</span>shake<span class="pl-pds">'</span></span>, $(<span class="pl-s"><span class="pl-pds">'</span>article<span class="pl-pds">'</span></span>));
-Alpha.ui.effects.js(<span class="pl-s"><span class="pl-pds">'</span>fadeOut<span class="pl-pds">'</span></span>, $(<span class="pl-s"><span class="pl-pds">'</span>.syntaxhighlighter<span class="pl-pds">'</span></span>), <span class="pl-k">function</span>() {
-    Alpha.ui.effects.js(<span class="pl-s"><span class="pl-pds">'</span>fadeIn<span class="pl-pds">'</span></span>, $(<span class="pl-s"><span class="pl-pds">'</span>.syntaxhighlighter<span class="pl-pds">'</span></span>));
+<div class="highlight highlight-javascript"><pre>$(<span class="pl-s"><span class="pl-pds">'</span>#shaker<span class="pl-pds">'</span></span>).on(<span class="pl-s"><span class="pl-pds">'</span>mouseenter<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>() {
+    Alpha.ui.effects.css(<span class="pl-s"><span class="pl-pds">'</span>shake<span class="pl-pds">'</span></span>, $(<span class="pl-v">this</span>), <span class="pl-k">function</span>() {
+        $(<span class="pl-v">this</span>).removeClass(<span class="pl-s"><span class="pl-pds">'</span>shake<span class="pl-pds">'</span></span>).removeClass(<span class="pl-s"><span class="pl-pds">'</span>animated<span class="pl-pds">'</span></span>);
+    });
 });</pre></div>
 
 <h2>
