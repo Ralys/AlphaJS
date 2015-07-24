@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Alphajs by Ralys</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Alphajs</h1>
+      <h2 class="project-tagline">AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience. Alpha.ui contains classes and builders for graphical components. Website: http://ralys.github.io/alphajs</h2>
+      <a href="https://github.com/Ralys/AlphaJS" class="btn">View on GitHub</a>
+      <a href="https://github.com/Ralys/AlphaJS/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Ralys/AlphaJS/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="alphajs" class="anchor" href="#alphajs" aria-hidden="true"><span class="octicon octicon-link"></span></a>AlphaJS</h1>
+
+<p>AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience.
+Alpha.ui contains classes and builders for graphical components.</p>
+
+<p>Website: <a href="http://ralys.github.io/alphajs">http://ralys.github.io/alphajs</a></p>
+
+<p>Dependencies: jQuery</p>
+
+<h2>
+<a id="alphacreateclass" class="anchor" href="#alphacreateclass" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.createClass</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> MyClass <span class="pl-k">=</span> Alpha.createClass({
+    name<span class="pl-k">:</span> ...,
+    parents<span class="pl-k">:</span> [...],
+    properties<span class="pl-k">:</span> ...,
+    strict<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    <span class="pl-en">init</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        ...
+    }
+});</pre></div>
+
+<p>You can easily create a class by giving the following information :</p>
+
+<ul>
+<li>
+<strong>name</strong>, name of the class</li>
+<li>
+<strong>parents</strong> (optional), array of constructors for multi-inheritence</li>
+<li>
+<strong>properties</strong>, the attributes and methods of the class. The methods will be put in the prototype of the class.</li>
+<li>
+<strong>strict</strong> (optional), boolean: if true, you won't be able to add new property to an instance of this class</li>
+<li>
+<strong>init</strong> (optional), function that will be executed when an object is created</li>
+</ul>
+
+<p>Every generated class contains the following methods:
+1. get returns one or several attributes (excepting methods). It can be useful when you want to exchange JSON data;
+2. set modifies one or several attributes (including methods);
+3. clone returns a copy of the current instance.</p>
+
+<h2>
+<a id="alphacreateobject" class="anchor" href="#alphacreateobject" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.createObject</h2>
+
+<p>If you want to use the get, set and clone methods without creating a class, you can use the constructor Alpha.createObject.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> human <span class="pl-k">=</span> Alpha.createObject({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Marc<span class="pl-pds">'</span></span>,
+    age<span class="pl-k">:</span> <span class="pl-c1">26</span>
+});
+
+<span class="pl-k">var</span> name <span class="pl-k">=</span> human.get(<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>);</pre></div>
+
+<h2>
+<a id="alphauielement" class="anchor" href="#alphauielement" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.Element</h2>
+
+<p>All the graphical components extended the class Alpha.ui.Element. This class contains useful attributes and methods for DOM manipulation, such as $container. The default $container is the body of the page.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> element <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.Element({
+    $container<span class="pl-k">:</span> ...,
+    $el<span class="pl-k">:</span> ...,
+
+    <span class="pl-en">render</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        ...
+    },
+    <span class="pl-en">show</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        ...
+    },
+
+    <span class="pl-en">onShow_effect</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        ...
+    },
+
+    <span class="pl-en">onHide_effect</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        ...
+    },
+});</pre></div>
+
+<p>When you use the method <strong>set</strong> on an object inheriting Alpha.ui.Element, you change in real time the value of the attribute in the DOM but the name of CSS class has to be the same of the name of the attribute.</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>&gt;Georges&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<h2>
+<a id="alphauiloadcss" class="anchor" href="#alphauiloadcss" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.loadCSS</h2>
+
+<p>If you want to use the following Alpha.ui components, you can load dynamically a stylesheet by using the method <strong>Alpha.ui.loadCSS()</strong>.
+The stylesheets contains the work of <a href="http://github.com/Daneden">Daneden</a> called <strong>animate.css</strong>.
+You should really check it out: <a href="http://daneden.github.io/animate.css/">http://daneden.github.io/animate.css/</a>, it's pretty awesome.</p>
+
+<p>This method calls another named: <strong>Alpha.ui.loadStylesheet</strong> that you can use to dynamically load CSS files.</p>
+
+<div class="highlight highlight-javascript"><pre>    Alpha.ui.loadCSS();
+    Alpha.ui.loadStylesheet(<span class="pl-s"><span class="pl-pds">'</span>http://rawgit.com/daneden/animate.css/master/animate.css<span class="pl-pds">'</span></span>);</pre></div>
+
+<h2>
+<a id="alphauibutton" class="anchor" href="#alphauibutton" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.Button</h2>
+
+<p>Buttons are very important in a web application. So, it's very understandable to have an easy way to manage them. AlphaJS provides this way with Alpha.ui.Button</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> button <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.<span class="pl-c1">Button</span>({
+    $container<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#buttons<span class="pl-pds">'</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>button<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>class<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>blue radius-corner<span class="pl-pds">'</span></span>,
+    content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#YOLO Button<span class="pl-pds">'</span></span>,
+    <span class="pl-en">onClick</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>I'm a blue button! #YOLO<span class="pl-pds">"</span></span>)
+    }
+});
+
+button.show();</pre></div>
+
+<h2>
+<a id="alphauimodalbox" class="anchor" href="#alphauimodalbox" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.ModalBox</h2>
+
+<p>Tired of making modal box over and over. Here is a little something for you that will spare you some time. All you have to do is to give a title and a content.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> modal1 <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.ModalBox({
+    title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Modal 1<span class="pl-pds">'</span></span>,
+    content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Modal box for container 1<span class="pl-pds">'</span></span>
+});</pre></div>
+
+<p>If you want to add buttons, there is the method <strong>addButton()</strong> for that:</p>
+
+<div class="highlight highlight-javascript"><pre>modal1.addButton(<span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.<span class="pl-c1">Button</span>({
+    type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>button<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>class<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>green<span class="pl-pds">'</span></span>,
+    content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Say hi<span class="pl-pds">'</span></span>,
+
+    <span class="pl-en">onClick</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">'</span>Hi!<span class="pl-pds">'</span></span>);
+    }
+}));</pre></div>
+
+<h2>
+<a id="alphauisidebox" class="anchor" href="#alphauisidebox" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.SideBox</h2>
+
+<p>Sideboxes are boxes showing on the sides of the screen when a certain selector appear on the screen. After you've created all of the sideboxes, do not forget to use the method <strong>Alpha.ui.SideBox.showAll</strong>. Theses boxes can be used to add complementary information.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> sidebox <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.SideBox({
+    $appearOn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#selector<span class="pl-pds">'</span></span>,
+    direction<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>right<span class="pl-pds">'</span></span>,
+    title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>I'm a SideBox<span class="pl-pds">"</span></span>,
+    content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Hello friend! :)<span class="pl-pds">"</span></span>
+});
+
+Alpha.ui.SideBox.showAll();</pre></div>
+
+<h2>
+<a id="alphauisearchwidget" class="anchor" href="#alphauisearchwidget" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.SearchWidget</h2>
+
+<p>This is a specific component that implements a search process. By ticking a result, you will add it to the guests list.</p>
+
+<p>Please check the <a href="http://ralys.github.io/alphajs/#alpha.ui.searchwidget">website</a> for more information.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Ralys/AlphaJS">Alphajs</a> is maintained by <a href="https://github.com/Ralys">Ralys</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
