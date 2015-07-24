@@ -254,6 +254,42 @@ Alpha.ui.SideBox.showAll();</pre></div>
 
 <p>This is a specific component that implements a search process. By ticking a result, you will add it to the guests list.</p>
 
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> search_widget <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.SearchWidget({
+    $container<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#search-widget<span class="pl-pds">'</span></span>,
+
+    <span class="pl-en">getOptions</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">callback</span>) {
+        callback([<span class="pl-s"><span class="pl-pds">'</span>All<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Male<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Female<span class="pl-pds">'</span></span>]);
+    },
+
+    <span class="pl-en">compareResults</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">r1</span>, <span class="pl-smi">r2</span>) {
+        <span class="pl-k">return</span> r1.username <span class="pl-k">==</span> r2.username;
+    },
+
+    <span class="pl-en">renderResult</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">result</span>) {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;img src="<span class="pl-pds">'</span></span> <span class="pl-k">+</span> result.picture.thumbnail <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>" alt=""&gt;<span class="pl-pds">'</span></span><span class="pl-k">+</span>
+               <span class="pl-s"><span class="pl-pds">'</span>&lt;div class="description"&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span>
+                    result.<span class="pl-c1">name</span>.first <span class="pl-k">+</span>
+               <span class="pl-s"><span class="pl-pds">'</span>&lt;/div&gt;<span class="pl-pds">'</span></span>;
+    },
+
+    <span class="pl-en">getResults</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">callback</span>, <span class="pl-smi">value</span>, <span class="pl-smi">category</span>) {
+        <span class="pl-k">var</span> results <span class="pl-k">=</span> [];
+
+        users.forEach(<span class="pl-k">function</span>(<span class="pl-smi">user</span>) {
+            <span class="pl-k">if</span>(startsWith(value, user.<span class="pl-c1">name</span>.first)) {
+                <span class="pl-k">if</span>(category.<span class="pl-c1">toUpperCase</span>() <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>ALL<span class="pl-pds">'</span></span>) 
+                    results.<span class="pl-c1">push</span>(user);
+                <span class="pl-k">else</span> {
+                    <span class="pl-k">if</span>(user.gender.<span class="pl-c1">toUpperCase</span>() <span class="pl-k">==</span> category.<span class="pl-c1">toUpperCase</span>())
+                        results.<span class="pl-c1">push</span>(user);
+                }
+            }
+        });
+
+        callback(results);
+    }
+});</pre></div>
+
 <p>Please check the <a href="http://ralys.github.io/alphajs/#alpha.ui.searchwidget">website</a> for more information.</p>
 
       <footer class="site-footer">
