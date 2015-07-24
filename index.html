@@ -92,26 +92,26 @@ You should really check it out: <a href="http://daneden.github.io/animate.css/">
 
 <p>Now, let's see how to instanciate and manipulate a Liger.</p>
 
-<div class="highlight highlight-javascript"><pre>ar my_liger <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Liger</span>({
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> myLiger <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Liger</span>({
     name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Felix<span class="pl-pds">'</span></span>,
     <span class="pl-en">roar</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
         <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>Grrrr, I'm different dude, I'm <span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">name</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>!<span class="pl-pds">"</span></span>);
     }
 });
 
-my_liger.set(<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>awesome<span class="pl-pds">'</span></span>);
-my_liger.set({
+myLiger.set(<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>awesome<span class="pl-pds">'</span></span>);
+myLiger.set({
     color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>yellow<span class="pl-pds">'</span></span>,
     name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>extra awesome<span class="pl-pds">'</span></span>
 });
 
 <span class="pl-k">var</span> color <span class="pl-k">=</span> my_liger.get(<span class="pl-s"><span class="pl-pds">'</span>color<span class="pl-pds">'</span></span>);
-<span class="pl-k">var</span> infos_liger <span class="pl-k">=</span> my_liger.get([<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>representation<span class="pl-pds">'</span></span>]);</pre></div>
+<span class="pl-k">var</span> infos <span class="pl-k">=</span> my_liger.get([<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>representation<span class="pl-pds">'</span></span>]);</pre></div>
 
 <h2>
 <a id="alphacreateobject" class="anchor" href="#alphacreateobject" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.createObject</h2>
 
-<p>If you want to use the get, set and clone methods without creating a class, you can use the constructor Alpha.createObject.</p>
+<p>If you want to use the <strong>get</strong>, <strong>set</strong> and <strong>clone</strong> methods without creating a class, you can use the constructor Alpha.createObject.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> human <span class="pl-k">=</span> Alpha.createObject({
     name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Marc<span class="pl-pds">'</span></span>,
@@ -123,7 +123,7 @@ my_liger.set({
 <h2>
 <a id="alphauielement" class="anchor" href="#alphauielement" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.Element</h2>
 
-<p>All the graphical components extended the class Alpha.ui.Element. This class contains useful attributes and methods for DOM manipulation, such as $container. The default $container is the body of the page.</p>
+<p>All the graphical components extended the class Alpha.ui.Element. This class contains useful attributes and methods for DOM manipulation, such as $container. The default <del>$container</del> is the body of the page.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> element <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.Element({
     $container<span class="pl-k">:</span> ...,
