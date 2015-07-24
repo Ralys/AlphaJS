@@ -519,6 +519,9 @@ Alpha.ui.SideBox.showAll();</pre></div>
 <a id="alphauisearchwidget" class="anchor" href="#alphauisearchwidget" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.SearchWidget</h2>
 
 <p>This is a specific component that implements a search process. By ticking a result, you will add it to the guests list.</p>
+
+<div id="search-widget"></div>
+
 <p>Here is how it works: you provide the data, the way to compare items from data, the way to render results and the way to get results (your personal algorithm search, for instance) and here it goes. You can also set options with the method <code>getOptions</code> but that is optional.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> search_widget <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.SearchWidget({
@@ -556,8 +559,6 @@ Alpha.ui.SideBox.showAll();</pre></div>
         callback(results);
     }
 });</pre></div>
-
-<div id="search-widget"></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Ralys/AlphaJS">AlphaJS</a> is maintained by <a href="https://github.com/Ralys">Ralys</a>.</span>
