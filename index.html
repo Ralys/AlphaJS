@@ -8,6 +8,250 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <style type="text/css">
+    .download {
+        position: relative;
+        margin: 5px 5px 0 0;
+    }
+
+    .download > .button+.button {
+        margin-top: 5px;
+        margin-left: 0 !important;
+    }
+
+    #character {
+        display:inline-block;
+        vertical-align:top;
+        min-height: 30px;
+        min-width: 200px;
+        text-align: center;
+        padding: 0 8px;
+        border: 1px solid #888;
+    }
+
+    .container {
+        position: relative;
+        margin-bottom: 10px;
+        height: 250px;
+        background-color: #f3f6fa;
+        border: solid 1px #dce6f0;
+    }
+
+    .container>.number {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 40px;
+        margin: 100px auto;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .container>.number:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+
+    .alphajs.searchwidget > * {
+        margin: 5px;
+    }
+
+    .alphajs.searchwidget > .search > .results {
+        margin-top: 6px;
+        z-index: 9999;
+    }
+
+    .alphajs.searchwidget > .search > .results > .result > img, .alphajs.searchwidget > .search > .results > .result > .description, .alphajs.searchwidget > .guests-list > .guest > img, .alphajs.searchwidget > .guests-list > .guest > .description {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .alphajs.searchwidget > .search > .results > .result > img, .alphajs.searchwidget > .guests-list > .guest > img {
+        width: 28px;
+    }
+
+    .alphajs.searchwidget > .search > .results > .result > .description, .alphajs.searchwidget > .guests-list > .guest > .description {
+        padding-left: 5px;
+        text-transform: capitalize;
+    }
+
+    .alphajs.searchwidget > .guests-list {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 5px;
+        min-height: 50px;
+        min-width: 150px;
+    }
+
+    .alphajs.searchwidget > .guests-list:before {
+        content: 'Guests List';
+        display: block;
+        margin: 5px 5px 10px 5px;
+        text-align: center;
+    }
+
+    @media screen and (min-width: 800px) {
+        .download {
+            position: absolute;
+            top: -70px;
+            right: 0px;
+        }
+
+        .container { 
+            display: inline-block;
+            vertical-align: top;
+            width: 33.33333%; 
+        }
+
+        .container+.container { width: 65.7%; }
+    }
+    </style>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://rawgit.com/ralys/alphajs/master/alpha.min.js"></script>
+    <script type="text/javascript">
+    function startsWith(needle, haystack) {
+        return (haystack.substr(0, needle.length).toUpperCase() == needle.toUpperCase());
+    }
+
+    $(function() {
+        Alpha.ui.loadCSS();
+
+        /* Character */
+        window.character = new Alpha.ui.Element({
+            name: 'James',
+            $container: '#ui_element',
+            
+            render: function() {
+                return '<div id="character" style="color:red;">' +
+                            '<div class="name">' + this.name + '</div>' +
+                       '</div>';
+            },
+
+            show: function() {
+                this.$container = $(this.$container);
+                this.$container.append(this.render());
+
+                this.$el = this.$container.find("#character");
+            }
+        });
+
+        character.show();
+
+        /* Shake effect */
+        $('#shaker').on('mouseenter', function() {
+            Alpha.ui.effects.css('shake', $(this), function() {
+                $(this).removeClass('shake').removeClass('animated');
+            });
+        });
+
+        /* YOLO Button */
+        var button = new Alpha.ui.Button({
+            $container: '#buttons',
+            type: 'button',
+            'class': 'blue radius-corner',
+            content: '#YOLO Button',
+            onClick: function() {
+                alert("I'm a blue button! #YOLO")
+            }
+        });
+
+        button.show();
+
+        /* Modal boxes */
+        var modal1 = new Alpha.ui.ModalBox({
+            $container: '#container-1',
+            triggeredBy: '#trigger-1',
+            title: 'Modal 1',
+            content: 'Modal box for container 1'
+        });
+
+        var modal2 = new Alpha.ui.ModalBox({
+            $container: '#container-2',
+            triggeredBy: '#trigger-2',
+            title: 'Modal 2',
+            content: 'Modal box for container 2',
+            buttons: [
+            new Alpha.ui.Button({
+                type: 'button',
+                'class': 'green',
+                content: 'Change content',
+                
+                onClick: function() {
+                    var content = this.belongsTo.get('content');
+                    
+                    if(content.indexOf('Content changed') != -1) {
+                        this.belongsTo.set('content', content+' again');
+                    } else {
+                        this.belongsTo.set('content', 'Content changed');
+                    }
+                }
+            })]
+        });
+
+        /* Sidebox */
+        var sb = new Alpha.ui.SideBox({
+            $appearOn: '#alphauisidebox',
+            direction: 'right',
+            title: "I'm a SideBox",
+            content: "Hello friend! :)"
+        });
+
+        Alpha.ui.SideBox.showAll();
+
+        var users;
+
+        $.ajax({
+            type: "GET",
+            url: "http://api.randomuser.me/?results=50",
+            dataType: 'json',
+            success: function(data) {
+                users = data.results.map(function(item) {
+                    return item.user;
+                });
+            },
+
+            complete: function() {
+                var search_widget = new Alpha.ui.SearchWidget({
+                    $container: '#search-widget',
+
+                    getOptions: function(callback) {
+                        callback(['All', 'Male', 'Female']);
+                    },
+
+                    compareResults: function(r1, r2) {
+                        return r1.username == r2.username;
+                    },
+
+                    renderResult: function(result) {
+                        return '<img src="' + result.picture.thumbnail + '" alt="">'+
+                               '<div class="description">' +
+                                    result.name.first +
+                               '</div>';
+                    },
+
+                    getResults: function(callback, value, category) {
+                        var results = [];
+
+                        users.forEach(function(user) {
+                            if(startsWith(value, user.name.first)) {
+                                if(category.toUpperCase() == 'ALL') 
+                                    results.push(user);
+                                else {
+                                    if(user.gender.toUpperCase() == category.toUpperCase())
+                                        results.push(user);
+                                }
+                            }
+                        });
+
+                        callback(results);
+                    }
+                });
+            }
+        });
+    });
+    </script>
   </head>
   <body>
     <section class="page-header">
@@ -22,17 +266,26 @@
       <h1>
 <a id="alphajs" class="anchor" href="#alphajs" aria-hidden="true"><span class="octicon octicon-link"></span></a>AlphaJS</h1>
 
-<p>Website: <a href="http://ralys.github.io/AlphaJS/">http://ralys.github.io/AlphaJS/</a></p>
+<div style="position:relative;">
+    <p>Website: <a href="http://ralys.github.io/AlphaJS/">http://ralys.github.io/AlphaJS/</a></p>
 
-<p>Dependencies: <strong>jQuery</strong></p>
+    <p>Dependencies: <strong>jQuery</strong></p>
+
+    <div class="download">
+        <a href="https://raw.githubusercontent.com/Ralys/AlphaJS/master/alpha.js" class="alphajs button green" download="alpha.js" title="Download alpha.js">Download AlphaJS</a>
+
+        <a href="https://raw.githubusercontent.com/Ralys/AlphaJS/master/alpha.min.js" class="alphajs button green" download="alpha.min.js" title="Download alpha.min.js">Download AlphaJS (minified)</a>
+    </div>
+</div>
 
 <h2>
 <a id="whats-alphajs-dude" class="anchor" href="#whats-alphajs-dude" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's AlphaJS, dude?</h2>
 
 <p>AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience. <code>Alpha.ui</code> contains classes and builders for graphical components.</p>
 
-<p>Thanks to <code>Alpha.ui.Element</code>, you can easily create your own component or you can use the ones already present in <code>Alpha.ui</code>: Button, ModalBox, SideBox, SearchWidget and a bunch of effects. Those effects are mostly provided by the stylesheet: <strong>animate.css</strong>, created by Daneden. 
-You should really check it out: <a href="http://daneden.github.io/animate.css/">http://daneden.github.io/animate.css/</a>, it's pretty awesome.</p>
+<p>Thanks to <code>Alpha.ui.Element</code>, you can easily create your own component or you can use the ones already present in <code>Alpha.ui</code>: 
+<a href="#alphauibutton">Button</a>, <a href="#alphauimodalbox">ModalBox</a>, <a href="#alphauisidebox">SideBox</a>, <a href="#alphauisearchwidget">SearchWidget</a> and a bunch of <a href="#alphauieffects">effects</a>. Those effects are mostly provided by the stylesheet: <strong>animate.css</strong>, created by Daneden. 
+You should really check it out: <a target="_blank" href="http://daneden.github.io/animate.css/">http://daneden.github.io/animate.css/</a>, it's pretty awesome.</p>
 
 <h2>
 <a id="alphacreateclass" class="anchor" href="#alphacreateclass" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.createClass</h2>
@@ -172,6 +425,10 @@ character.show();</pre></div>
 
 <p>Now, you can change the name of this character just by using the following input:</p>
 
+<div id="ui_element">
+    <input type="text" placeholder="Type a name" onkeyup="character.set('name', this.value)">
+</div>
+
 <h2>
 <a id="alphauiloadcss" class="anchor" href="#alphauiloadcss" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.loadCSS</h2>
 
@@ -186,9 +443,9 @@ Alpha.ui.loadStylesheet(<span class="pl-s"><span class="pl-pds">'</span>http://r
 
 <p>If you want to apply an effect on an element, you can use <code>Alpha.ui.effects.css</code> or <code>Alpha.ui.effects.js</code>. You just have to pass the name of the effect, then the jQuery element and optionnaly a function that is triggered when the effect is done. You can check all the effects available with <code>Alpha.ui.effects.css.all</code> and <code>Alpha.ui.effects.js.all</code>.</p>
 
-<p>Example:</p>
+<p>Example: Put the mouse over the following code sample</p>
 
-<div class="highlight highlight-javascript"><pre>$(<span class="pl-s"><span class="pl-pds">'</span>#shaker<span class="pl-pds">'</span></span>).on(<span class="pl-s"><span class="pl-pds">'</span>mouseenter<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>() {
+<div id="shaker" class="highlight highlight-javascript"><pre>$(<span class="pl-s"><span class="pl-pds">'</span>#shaker<span class="pl-pds">'</span></span>).on(<span class="pl-s"><span class="pl-pds">'</span>mouseenter<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>() {
     Alpha.ui.effects.css(<span class="pl-s"><span class="pl-pds">'</span>shake<span class="pl-pds">'</span></span>, $(<span class="pl-v">this</span>), <span class="pl-k">function</span>() {
         $(<span class="pl-v">this</span>).removeClass(<span class="pl-s"><span class="pl-pds">'</span>shake<span class="pl-pds">'</span></span>).removeClass(<span class="pl-s"><span class="pl-pds">'</span>animated<span class="pl-pds">'</span></span>);
     });
@@ -210,6 +467,7 @@ Alpha.ui.loadStylesheet(<span class="pl-s"><span class="pl-pds">'</span>http://r
 });
 
 button.show();</pre></div>
+<div id="buttons"></div>
 
 <h2>
 <a id="alphauimodalbox" class="anchor" href="#alphauimodalbox" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.ModalBox</h2>
@@ -233,7 +491,15 @@ button.show();</pre></div>
     }
 }));</pre></div>
 
-<p>These modalboxes are tottaly <strong>responsives</strong>. Check those two for instance:</p>
+<p>These modalboxes are totally <strong>responsives</strong>. Check those two for instance:</p>
+
+<div id="container-1" class="container">
+    <div id="trigger-1" class="number">1</div>
+</div>
+
+<div id="container-2" class="container">
+    <div id="trigger-2" class="number">2</div>
+</div>
 
 <h2>
 <a id="alphauisidebox" class="anchor" href="#alphauisidebox" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.SideBox</h2>
@@ -253,6 +519,7 @@ Alpha.ui.SideBox.showAll();</pre></div>
 <a id="alphauisearchwidget" class="anchor" href="#alphauisearchwidget" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.SearchWidget</h2>
 
 <p>This is a specific component that implements a search process. By ticking a result, you will add it to the guests list.</p>
+<p>Here is how it works: you provide the data, the way to compare items from data, the way to render results and the way to get results (your personal algorithm search, for instance) and here it goes. You can also set options with the method <code>getOptions</code> but that is optional.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> search_widget <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.SearchWidget({
     $container<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#search-widget<span class="pl-pds">'</span></span>,
@@ -290,7 +557,7 @@ Alpha.ui.SideBox.showAll();</pre></div>
     }
 });</pre></div>
 
-<p>Please check the <a href="http://ralys.github.io/alphajs/#alpha.ui.searchwidget">website</a> for more information.</p>
+<div id="search-widget"></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Ralys/AlphaJS">AlphaJS</a> is maintained by <a href="https://github.com/Ralys">Ralys</a>.</span>
@@ -300,7 +567,5 @@ Alpha.ui.SideBox.showAll();</pre></div>
 
     </section>
 
-  
   </body>
 </html>
-
