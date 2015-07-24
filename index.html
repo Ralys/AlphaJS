@@ -29,9 +29,9 @@
 <h2>
 <a id="whats-alphajs-dude" class="anchor" href="#whats-alphajs-dude" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's AlphaJS, dude?</h2>
 
-<p>AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience. Alpha.ui contains classes and builders for graphical components.</p>
+<p>AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience. <code>Alpha.ui</code> contains classes and builders for graphical components.</p>
 
-<p>Thanks to Alpha.ui.Element, you can easily create your own component or you can use the ones already present in <strong>Alpha.ui</strong>: Button, ModalBox, SideBox, SearchWidget and a bunch of effects. Those effects are mostly provided by the stylesheet: animate.css, created by Daneden. 
+<p>Thanks to <code>Alpha.ui.Element</code>, you can easily create your own component or you can use the ones already present in <code>Alpha.ui</code>: Button, ModalBox, SideBox, SearchWidget and a bunch of effects. Those effects are mostly provided by the stylesheet: <strong>animate.css</strong>, created by Daneden. 
 You should really check it out: <a href="http://daneden.github.io/animate.css/">http://daneden.github.io/animate.css/</a>, it's pretty awesome.</p>
 
 <h2>
@@ -51,26 +51,26 @@ You should really check it out: <a href="http://daneden.github.io/animate.css/">
 
 <ul>
 <li>
-<strong>name</strong>, name of the class</li>
+<code>name</code>, name of the class</li>
 <li>
-<strong>parents</strong> (optional), array of constructors for multi-inheritence</li>
+<code>parents</code> (optional), array of constructors for multi-inheritence</li>
 <li>
-<strong>properties</strong>, the attributes and methods of the class. The methods will be put in the prototype of the class.</li>
+<code>properties</code>, the attributes and methods of the class. The methods will be put in the prototype of the class.</li>
 <li>
-<strong>strict</strong> (optional), boolean: if true, you won't be able to add new property to an instance of this class</li>
+<code>strict</code> (optional), boolean: if true, you won't be able to add new property to an instance of this class</li>
 <li>
-<strong>init</strong> (optional), function that will be executed when an object is created</li>
+<code>init</code> (optional), function that will be executed when an object is created</li>
 </ul>
 
 <p>Every generated class contains the following methods:</p>
 
 <ol>
 <li>
-<strong>get</strong> returns one or several attributes (excepting methods). It can be useful when you want to exchange JSON data;</li>
+<code>get</code> returns one or several attributes (excepting methods). It can be useful when you want to exchange JSON data;</li>
 <li>
-<strong>set</strong> modifies one or several attributes (including methods);</li>
+<code>set</code> modifies one or several attributes (including methods);</li>
 <li>
-<strong>clone</strong> returns a copy of the current instance.</li>
+<code>clone</code> returns a copy of the current instance.</li>
 </ol>
 
 <p>Here is an example:</p>
@@ -88,7 +88,7 @@ You should really check it out: <a href="http://daneden.github.io/animate.css/">
     }
 });</pre></div>
 
-<p>As you can see, AlphaJS handles multi-inheritence by passing an array of constructors into the property <strong>parents</strong>. <strong>properties</strong> contains the attributes and methods of the class. For a matter of performance, the methods will be put in the prototype of the class. </p>
+<p>As you can see, AlphaJS handles multi-inheritence by passing an array of constructors into the property <code>parents</code>. <code>properties</code> contains the attributes and methods of the class. For a matter of performance, the methods will be put in the prototype of the class. </p>
 
 <p>Now, let's see how to instanciate and manipulate a Liger.</p>
 
@@ -111,7 +111,7 @@ myLiger.set({
 <h2>
 <a id="alphacreateobject" class="anchor" href="#alphacreateobject" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.createObject</h2>
 
-<p>If you want to use the <strong>get</strong>, <strong>set</strong> and <strong>clone</strong> methods without creating a class, you can use the constructor Alpha.createObject.</p>
+<p>If you want to use the <code>get</code>, <code>set</code> and <code>clone</code> methods without creating a class, you can use the constructor <code>Alpha.createObject</code>.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> human <span class="pl-k">=</span> Alpha.createObject({
     name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Marc<span class="pl-pds">'</span></span>,
@@ -123,7 +123,7 @@ myLiger.set({
 <h2>
 <a id="alphauielement" class="anchor" href="#alphauielement" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.Element</h2>
 
-<p>All the graphical components extended the class Alpha.ui.Element. This class contains useful attributes and methods for DOM manipulation, such as $container. The default <del>$container</del> is the body of the page.</p>
+<p>All the graphical components extended the class <code>Alpha.ui.Element</code>. This class contains useful attributes and methods for DOM manipulation, such as <code>$container</code> and <code>$el</code>. The default <code>$container</code> is the body of the page.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> element <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.Element({
     $container<span class="pl-k">:</span> ...,
@@ -132,6 +132,7 @@ myLiger.set({
     <span class="pl-en">render</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
         ...
     },
+
     <span class="pl-en">show</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
         ...
     },
@@ -145,28 +146,57 @@ myLiger.set({
     },
 });</pre></div>
 
-<p>When you use the method <strong>set</strong> on an object inheriting Alpha.ui.Element, you change in real time the value of the attribute in the DOM but the name of CSS class has to be the same of the name of the attribute.</p>
+<p>When you use the method <code>set</code> on an object inheriting <code>Alpha.ui.Element</code>, you change in real time the value of the attribute in the DOM but <strong>the name of CSS class has to be the same of the name of the attribute</strong>.</p>
 
 <p>Example:</p>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>&gt;Georges&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> character <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.Element({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>James<span class="pl-pds">'</span></span>,
+    $container<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#ui_element<span class="pl-pds">'</span></span>,
+
+    <span class="pl-en">render</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;div id="character" style="text-align:center;color:red;"&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span>
+                    <span class="pl-s"><span class="pl-pds">'</span>&lt;div class="name"&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">name</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/div&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span>
+               <span class="pl-s"><span class="pl-pds">'</span>&lt;/div&gt;<span class="pl-pds">'</span></span>;
+    },
+
+    <span class="pl-en">show</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        <span class="pl-v">this</span>.$container <span class="pl-k">=</span> $(<span class="pl-v">this</span>.$container);
+        <span class="pl-v">this</span>.$container.append(<span class="pl-v">this</span>.render());
+
+        <span class="pl-v">this</span>.$el <span class="pl-k">=</span> <span class="pl-v">this</span>.$container.<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">"</span>#character<span class="pl-pds">"</span></span>);
+    }
+});
+
+character.show();</pre></div>
+
+<p>Now, you can change the name of this character just by using the following input:</p>
 
 <h2>
 <a id="alphauiloadcss" class="anchor" href="#alphauiloadcss" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.loadCSS</h2>
 
-<p>If you want to use the following Alpha.ui components, you can load dynamically a stylesheet by using the method <strong>Alpha.ui.loadCSS()</strong>.
-The stylesheets contains the work of <a href="http://github.com/Daneden">Daneden</a> called <strong>animate.css</strong>.
-You should really check it out: <a href="http://daneden.github.io/animate.css/">http://daneden.github.io/animate.css/</a>, it's pretty awesome.</p>
+<p>If you want to use the different <code>Alpha.ui</code> components, you can load dynamically a stylesheet by using the method <code>Alpha.ui.loadCSS</code>.
+The stylesheets contains the work of <a href="http://github.com/Daneden">Daneden</a> called <strong>animate.css</strong>. This method calls another named: <code>Alpha.ui.loadStylesheet</code> which you can use to dynamically load CSS files.</p>
 
-<p>This method calls another named: <strong>Alpha.ui.loadStylesheet</strong> that you can use to dynamically load CSS files.</p>
+<div class="highlight highlight-javascript"><pre>Alpha.ui.loadCSS();
+Alpha.ui.loadStylesheet(<span class="pl-s"><span class="pl-pds">'</span>http://rawgit.com/daneden/animate.css/master/animate.css<span class="pl-pds">'</span></span>);</pre></div>
 
-<div class="highlight highlight-javascript"><pre>    Alpha.ui.loadCSS();
-    Alpha.ui.loadStylesheet(<span class="pl-s"><span class="pl-pds">'</span>http://rawgit.com/daneden/animate.css/master/animate.css<span class="pl-pds">'</span></span>);</pre></div>
+<h2>
+<a id="alphauieffects" class="anchor" href="#alphauieffects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.effects</h2>
+
+<p>If you want to apply an effect on an element, you can use <code>Alpha.ui.effects.css</code> or <code>Alpha.ui.effects.js</code>. You just have to pass the name of the effect, then the jQuery element and optionnaly a function that is triggered when the effect is done. You can check all the effects available with <code>Alpha.ui.effects.css.all</code> and <code>Alpha.ui.effects.js.all</code>.</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-javascript"><pre>Alpha.ui.effects.css(<span class="pl-s"><span class="pl-pds">'</span>shake<span class="pl-pds">'</span></span>, $(<span class="pl-s"><span class="pl-pds">'</span>article<span class="pl-pds">'</span></span>));
+Alpha.ui.effects.js(<span class="pl-s"><span class="pl-pds">'</span>fadeOut<span class="pl-pds">'</span></span>, $(<span class="pl-s"><span class="pl-pds">'</span>.syntaxhighlighter<span class="pl-pds">'</span></span>), <span class="pl-k">function</span>() {
+    Alpha.ui.effects.js(<span class="pl-s"><span class="pl-pds">'</span>fadeIn<span class="pl-pds">'</span></span>, $(<span class="pl-s"><span class="pl-pds">'</span>.syntaxhighlighter<span class="pl-pds">'</span></span>));
+});</pre></div>
 
 <h2>
 <a id="alphauibutton" class="anchor" href="#alphauibutton" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.Button</h2>
 
-<p>Buttons are very important in a web application. So, it's very understandable to have an easy way to manage them. AlphaJS provides this way with Alpha.ui.Button</p>
+<p>Buttons are very important in a web application. So, it's very understandable to have an easy way to manage them. AlphaJS provides this way with <code>Alpha.ui.Button</code></p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> button <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.<span class="pl-c1">Button</span>({
     $container<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#buttons<span class="pl-pds">'</span></span>,
