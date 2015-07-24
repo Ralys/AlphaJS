@@ -213,7 +213,7 @@ button.show();</pre></div>
 <h2>
 <a id="alphauimodalbox" class="anchor" href="#alphauimodalbox" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.ModalBox</h2>
 
-<p>Tired of making modal box over and over. Here is a little something for you that will spare you some time. All you have to do is to give a title and a content.</p>
+<p>Are you tired of making modal box over and over? Here is a little something for you that will spare you some time. All you have to do is to give a title and a content.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> modal1 <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.ModalBox({
     title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Modal 1<span class="pl-pds">'</span></span>,
@@ -228,14 +228,16 @@ button.show();</pre></div>
     content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Say hi<span class="pl-pds">'</span></span>,
 
     <span class="pl-en">onClick</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
-        <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">'</span>Hi!<span class="pl-pds">'</span></span>);
+            <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">'</span>Hi!<span class="pl-pds">'</span></span>);
     }
 }));</pre></div>
+
+<p>These modalboxes are tottaly <strong>responsives</strong>. Check those two for instance:</p>
 
 <h2>
 <a id="alphauisidebox" class="anchor" href="#alphauisidebox" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.SideBox</h2>
 
-<p>Sideboxes are boxes showing on the sides of the screen when a certain selector appear on the screen. After you've created all of the sideboxes, do not forget to use the method <strong>Alpha.ui.SideBox.showAll</strong>. Theses boxes can be used to add complementary information.</p>
+<p>Sideboxes are boxes showing on the sides of the screen when a certain selector appear at sight. After creating all of the sideboxes you need, do not forget to use the method <code>Alpha.ui.SideBox.showAll</code>. Theses boxes can be used to add complementary information when a certain text, picture or video is at sight.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> sidebox <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.SideBox({
     $appearOn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#selector<span class="pl-pds">'</span></span>,
