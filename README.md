@@ -148,4 +148,4 @@ Alpha.ui.SideBox.showAll();
 ## Alpha.ui.SearchWidget
 This is a specific component that implements a search process. By ticking a result, you will add it to the guests list.
 
-Please check the [website](http://ralys.github.io/alphajs/#alpha.ui.searchwidget) for more information.
+Please check the [website](http://ralys.github.io/AlphaJS/#alphauisearchwidget) for more information.
