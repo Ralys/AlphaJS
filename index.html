@@ -358,8 +358,8 @@ myLiger.set({
     name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>extra awesome<span class="pl-pds">'</span></span>
 });
 
-<span class="pl-k">var</span> color <span class="pl-k">=</span> my_liger.get(<span class="pl-s"><span class="pl-pds">'</span>color<span class="pl-pds">'</span></span>);
-<span class="pl-k">var</span> infos <span class="pl-k">=</span> my_liger.get([<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>representation<span class="pl-pds">'</span></span>]);</pre></div>
+<span class="pl-k">var</span> color <span class="pl-k">=</span> myLiger.get(<span class="pl-s"><span class="pl-pds">'</span>color<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> infos <span class="pl-k">=</span> myLiger.get([<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>representation<span class="pl-pds">'</span></span>]);</pre></div>
 
 <h2>
 <a id="alphacreateobject" class="anchor" href="#alphacreateobject" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.createObject</h2>
@@ -522,7 +522,9 @@ Alpha.ui.SideBox.showAll();</pre></div>
 
 <div id="search-widget"></div>
 
-<p>Here is how it works: you provide the data, the way to compare items from data, the way to render results and the way to get results (your personal algorithm search, for instance) and here it goes. You can also set options with the method <code>getOptions</code> but that is optional.</p>
+<p>Here is how it works: you provide the data, the way to compare items from data, the way to render results and the way to get results (your personal algorithm search, for instance) and here it goes.</p>
+
+<p>You can also set options. Options are the different categories your results can belong to. For example, you want to filter your results by gender. To set the options, you can use the method <code>getOptions</code> and pass the array of categories into the callback.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> search_widget <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.SearchWidget({
     $container<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#search-widget<span class="pl-pds">'</span></span>,
