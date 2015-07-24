@@ -178,18 +178,6 @@
 		},
 
 		/**
-		 * [loadBody description]
-		 * Singleton to get body with jQuery
-		 * 
-		 * @return void
-		 */
-		loadBody: function() {
-			$document.ready(function() {
-				if(Alpha.ui.singletons.$body == null) Alpha.ui.singletons.$body = $('body');
-			});
-		},
-
-		/**
 		 * [applyDOMElement description]
 		 * Put a DOM element in a property of an AlphaObject
 		 * 
@@ -201,9 +189,9 @@
 		applyDOMElement: function(property, selector, fn) {
 			var _this = this;
 
-			_functions.loadBody();
+			$(function() {
+				if(Alpha.ui.singletons.$body == null) Alpha.ui.singletons.$body = $(document.body);
 
-			$document.ready(function() {
 				if(selector == null) {
 					_this.set(property, Alpha.ui.singletons.$body);
 				} else {
@@ -225,7 +213,7 @@
 		onclick: function(triggeredBy, fn) {
 			var _this = this;
 
-			$document.ready(function() {
+			$(function() {
 				$(this).on('click', triggeredBy, function(e) {
 					e.preventDefault();
 					fn.call(_this);
@@ -436,7 +424,9 @@
 	/* UI Effects */
 	Alpha.ui.effects = {};
 
-	var $document = $(document);
+	var $document = $(document),
+		$window   = $(window),
+		$head 	  = null;
 
 	/* Stylesheet loaders */
 	var alphajs_css_url = 'http://rawgit.com/ralys/alphajs/master/stylesheets/alphajs.min.css';
@@ -449,9 +439,11 @@
 	 * @return Alpha.ui
 	 */
 	Alpha.ui.loadStylesheet = function(url) {
-		$document.ready(function() {
+		$(function() {
+			if($head == null) $head = $(document.head);
+
 			if($('link[rel*=style][href="'+url+'"]').length == 0) {
-				$('head').append('<link rel="stylesheet" type="text/css" href="'+url+'">');
+				$head.append('<link rel="stylesheet" type="text/css" href="'+url+'">');
 			}
 		});
 
@@ -759,7 +751,7 @@
 
 				if(this.$container == Alpha.ui.singletons.$body) {
 					this.$overlay.css('position', 'fixed');
-					this.$el.css('top', $(window).scrollTop()+20);
+					this.$el.css('top', $window.scrollTop()+20);
 				}
 
 				this.$container.css('overflow', 'hidden')
@@ -827,7 +819,7 @@
 				this.$el = this.$container.find('#'+this.id);
 
 				/* Close action */
-				this.$el.find(".close").click(function() {
+				this.$el.find(".close").on('click', function() {
 					_this.close();
 				});
 
@@ -930,13 +922,8 @@
 		init: function() {
 			_functions.applyDOMElement.call(this, '$container', this.$container);
 
-			if(this.triggeredBy) {
-				var _this = this;
-
-				_functions.onclick(this.triggeredBy, function() {
-					_this.show();
-				});
-			}
+			if(this.triggeredBy)
+				_functions.onclick.call(this, this.triggeredBy, this.show);
 		}
 	}); 
 
@@ -997,7 +984,7 @@
 				this.$el = this.$container.find('#'+this.id);
 
 				/* Close action */
-				this.$el.find(".close").click(function() {
+				this.$el.find(".close").on('click', function() {
 					_this.close();
 				});
 
@@ -1084,9 +1071,7 @@
 	 * @return void
 	 */
 	Alpha.ui.SideBox.showAll = function() {
-		$document.ready(function() {
-			var $window = $(window);
-
+		$(function() {
 			$window.on('scroll', function() {
 				var windowTop = $window.scrollTop(),
 					windowBottom = windowTop + $window.height();
@@ -1312,13 +1297,7 @@
 		},
 
 		init: function() {
-			var _this = this;
-
-			_functions.applyDOMElement.call(this, '$container', this.$container);
-
-			$document.ready(function() {
-				_this.show();
-			});
+			_functions.applyDOMElement.call(this, '$container', this.$container, this.show);
 		}
 	});
 
