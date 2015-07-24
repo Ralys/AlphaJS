@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Alphajs by Ralys</title>
+    <title>AlphaJS by Ralys</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -11,8 +11,8 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Alphajs</h1>
-      <h2 class="project-tagline">AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience. Alpha.ui contains classes and builders for graphical components. Website: http://ralys.github.io/alphajs</h2>
+      <h1 class="project-name">AlphaJS</h1>
+      <h2 class="project-tagline">AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience. Alpha.ui contains classes and builders for graphical components. Website: http://ralys.github.io/AlphaJS/</h2>
       <a href="https://github.com/Ralys/AlphaJS" class="btn">View on GitHub</a>
       <a href="https://github.com/Ralys/AlphaJS/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/Ralys/AlphaJS/tarball/master" class="btn">Download .tar.gz</a>
@@ -22,12 +22,19 @@
       <h1>
 <a id="alphajs" class="anchor" href="#alphajs" aria-hidden="true"><span class="octicon octicon-link"></span></a>AlphaJS</h1>
 
-<p>AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience.
-Alpha.ui contains classes and builders for graphical components.</p>
+<p>AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience.</p>
 
 <p>Website: <a href="http://ralys.github.io/AlphaJS/">http://ralys.github.io/AlphaJS/</a></p>
 
 <p>Dependencies: <strong>jQuery</strong></p>
+
+<h2>
+<a id="whats-alphajs-dude" class="anchor" href="#whats-alphajs-dude" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's AlphaJS, dude?</h2>
+
+<p>AlphaJS is a JavaScript library that allows you to easily create class, providing you a different way to manage models. This library also cares about user interface and experience.</p>
+
+<p>Alpha.ui contains classes and builders for graphical components. Thanks to Alpha.ui.Element, you can easily create your own component or you can use the ones already present in Alpha.ui: Button, ModalBox, SideBox, SearchWidget and a bunch of effects. Those effects are mostly provided by the stylesheet: animate.css, created by Daneden. 
+You should really check it out: <a href="http://daneden.github.io/animate.css/">http://daneden.github.io/animate.css/</a>, it's pretty awesome.</p>
 
 <h2>
 <a id="alphacreateclass" class="anchor" href="#alphacreateclass" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.createClass</h2>
@@ -61,6 +68,41 @@ Alpha.ui contains classes and builders for graphical components.</p>
 1. get returns one or several attributes (excepting methods). It can be useful when you want to exchange JSON data;
 2. set modifies one or several attributes (including methods);
 3. clone returns a copy of the current instance.</p>
+
+<p>Here is an example:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> Liger <span class="pl-k">=</span> Alpha.createClass({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Liger<span class="pl-pds">'</span></span>,
+    parents<span class="pl-k">:</span> [Lion, Tiger],
+    properties<span class="pl-k">:</span> {
+        color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>orange<span class="pl-pds">'</span></span>,
+        representation<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>http://bigcathabitat.org/wp-content/uploads/2011/08/Brutus.jpg<span class="pl-pds">'</span></span>,
+
+        <span class="pl-en">roar</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+            <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">'</span>Grrr!<span class="pl-pds">'</span></span>);
+        }
+    }
+});</pre></div>
+
+<p>As you can see, AlphaJS handles multi-inheritence by passing an array of constructors into the property <strong>parents</strong>. <strong>properties</strong> contains the attributes and methods of the class. For a matter of performance, the methods will be put in the prototype of the class. </p>
+
+<p>Now, let's see how to instanciate and manipulate a Liger.</p>
+
+<div class="highlight highlight-javascript"><pre>ar my_liger <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Liger</span>({
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Felix<span class="pl-pds">'</span></span>,
+    <span class="pl-en">roar</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
+        <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>Grrrr, I'm different dude, I'm <span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">name</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>!<span class="pl-pds">"</span></span>);
+    }
+});
+
+my_liger.set(<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>awesome<span class="pl-pds">'</span></span>);
+my_liger.set({
+    color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>yellow<span class="pl-pds">'</span></span>,
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>extra awesome<span class="pl-pds">'</span></span>
+});
+
+<span class="pl-k">var</span> color <span class="pl-k">=</span> my_liger.get(<span class="pl-s"><span class="pl-pds">'</span>color<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> infos_liger <span class="pl-k">=</span> my_liger.get([<span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>representation<span class="pl-pds">'</span></span>]);</pre></div>
 
 <h2>
 <a id="alphacreateobject" class="anchor" href="#alphacreateobject" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.createObject</h2>
@@ -178,7 +220,7 @@ Alpha.ui.SideBox.showAll();</pre></div>
 <p>Please check the <a href="http://ralys.github.io/alphajs/#alpha.ui.searchwidget">website</a> for more information.</p>
 
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/Ralys/AlphaJS">Alphajs</a> is maintained by <a href="https://github.com/Ralys">Ralys</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/Ralys/AlphaJS">AlphaJS</a> is maintained by <a href="https://github.com/Ralys">Ralys</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
