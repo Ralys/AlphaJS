@@ -1020,8 +1020,6 @@
 			close: function() {
 				var _this = this;
 
-				this.is_shown = false;
-
 				// Hide effects
 				if(this.onHide_effect != null && this.onHide_effect instanceof Function) {
 					this.onHide_effect();
