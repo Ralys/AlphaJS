@@ -192,7 +192,7 @@
 
         /* Sidebox */
         var sb = new Alpha.ui.SideBox({
-            $appearOn: '#alphauisidebox',
+            $appearOn: '#selector',
             direction: 'right',
             title: "I'm a SideBox",
             content: "Hello friend! :)"
@@ -487,7 +487,7 @@ button.show();</pre></div>
     content<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Say hi<span class="pl-pds">'</span></span>,
 
     <span class="pl-en">onClick</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
-            <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">'</span>Hi!<span class="pl-pds">'</span></span>);
+        <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">'</span>Hi!<span class="pl-pds">'</span></span>);
     }
 }));</pre></div>
 
@@ -504,7 +504,7 @@ button.show();</pre></div>
 <h2>
 <a id="alphauisidebox" class="anchor" href="#alphauisidebox" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alpha.ui.SideBox</h2>
 
-<p>Sideboxes are boxes showing on the sides of the screen when a certain selector appear at sight. After creating all of the sideboxes you need, do not forget to use the method <code>Alpha.ui.SideBox.showAll</code>. Theses boxes can be used to add complementary information when a certain text, picture or video is at sight.</p>
+<p id="selector">Sideboxes are boxes showing on the sides of the screen when a certain selector appear at sight. After creating all of the sideboxes you need, do not forget to use the method <code>Alpha.ui.SideBox.showAll</code>. Theses boxes can be used to add complementary information when a certain text, picture or video is at sight.</p>
 
 <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> sidebox <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Alpha.ui</span>.SideBox({
     $appearOn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#selector<span class="pl-pds">'</span></span>,
