@@ -475,6 +475,8 @@
 		} else {
 			throw new AlphaError('[Alpha.ui.effects.js] "'+name+'" is not a jQuery effect');
 		}
+
+		return this;
 	};
 
 	/**
@@ -502,6 +504,8 @@
 		} else {
 			throw new AlphaError('[Alpha.ui.effects.css] "'+name+'" is not a CSS effect registered');
 		}
+
+		return this;
 	};
 
 	/**
@@ -518,7 +522,7 @@
 	 * 
 	 * @type Array
 	 */
-	Alpha.ui.effects.css.all = ['bounce', 'flash', 'pulse', 'rubberBand', 'shake', 'swing', 'tada', 'wobble', 'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp', 'bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp', 'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'fadeOut', 'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 'fadeOutRightBig', 'fadeOutUp', 'fadeOutUpBig', 'flip', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY', 'lightSpeedIn', 'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight', 'hinge', 'rollIn', 'rollOut', 'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp', 'zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp'];
+	Alpha.ui.effects.css.all = ["bounce", "flash", "pulse", "rubberBand", "shake", "swing", "tada", "wobble", "jello", "bounceIn", "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp", "bounceOut", "bounceOutDown", "bounceOutLeft", "bounceOutRight", "bounceOutUp", "fadeIn", "fadeInDown", "fadeInDownBig", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig", "fadeOut", "fadeOutDown", "fadeOutDownBig", "fadeOutLeft", "fadeOutLeftBig", "fadeOutRight", "fadeOutRightBig", "fadeOutUp", "fadeOutUpBig", "flip", "flipInX", "flipInY", "flipOutX", "flipOutY", "lightSpeedIn", "lightSpeedOut", "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight", "rotateOut", "rotateOutDownLeft", "rotateOutDownRight", "rotateOutUpLeft", "rotateOutUpRight", "slideInUp", "slideInDown", "slideInLeft", "slideInRight", "slideOutUp", "slideOutDown", "slideOutLeft", "slideOutRight", "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp", "zoomOut", "zoomOutDown", "zoomOutLeft", "zoomOutRight", "zoomOutUp", "hinge", "rollIn", "rollOut"];
 	/* End of CSS effects */
 
 	/**
@@ -584,8 +588,7 @@
 
 	/**
 	 * [Alpha.ui.Button description]
-	 * UI representation of a button
-	 * @return {[type]}   [description]
+	 * Alpha Button generator
 	 */
 	Alpha.ui.Button = Alpha.createClass({
 		name: 'AlphaButton',
@@ -643,6 +646,8 @@
 						_functions.onclick.call(this, '#'+this.id, this.onClick);
 					}
 				});
+
+				return this;
 			},
 
 			/**
@@ -666,6 +671,8 @@
 
 					_functions.onclick.call(this, '#'+this.id, this.onClick);
 				}
+
+				return this;
 			},
 
 			set: function() {
@@ -760,6 +767,8 @@
 				});
 
 				Alpha.ui.effects.css('bounceInDown', this.$el);
+
+				return this;
 			},
 
 			onHide_effect: function() {
@@ -774,6 +783,8 @@
 					_this.$container.css('overflow', 'initial')
 									.unbind('mousewheel');
 				});
+
+				return this;
 			},
 			
 			render: function() {
@@ -842,6 +853,8 @@
 				if(this.onShow_effect != null && this.onShow_effect instanceof Function) {
 					this.onShow_effect();
 				}
+
+				return this;
 			},
 
 			/**
@@ -858,6 +871,8 @@
 				if(this.onHide_effect != null && this.onHide_effect instanceof Function) {
 					this.onHide_effect();
 				}
+
+				return this;
 			},
 
 			/**
@@ -875,6 +890,8 @@
 				if(this.$el == null) return;
 				this.$el.find('.buttons').append(button.render());
 				button.bind(this);
+
+				return this;
 			},
 
 			/**
@@ -891,6 +908,8 @@
 
 				if(this.$el == null) return;
 				button.$el.remove();
+
+				return this;
 			},
 
 			set: function() {
@@ -1010,6 +1029,8 @@
 
 					Alpha.ui.effects.css(effect, this.$el);
 				}
+
+				return this;
 			},
 
 			/**
@@ -1038,6 +1059,8 @@
 						_this.$el.remove();
 					});
 				}
+
+				return this;
 			}
 		},
 
@@ -1137,9 +1160,8 @@
 					render = '<div class="result">'+ this.notFoundMessage +'</div>';
 				} else {
 					for(var i = 0; i < results.length; i++) {
-						var result = results[i];
-
-						var checked = '';
+						var result = results[i], 
+							checked = '';
 
 						if(_functions.containsElement.call(this.guests, result, this.compareResults))
 							checked = ' checked';
@@ -1209,6 +1231,8 @@
 						}
 					});
 				}
+
+				return this;
 			},
 
 			removeGuest: function(guest) {
@@ -1230,6 +1254,8 @@
 				// uncheck boxes from both results and guests list
 				this.$el.find('.results').find('.result').each(callback);
 				this.$el.find('.guests-list').find('.guest').each(callback);
+
+				return this;
 			},
 
 			show: function() {
@@ -1291,6 +1317,8 @@
 				this.$el.find('.search').find('input[type=search]').on('search', function() {
 					_this.$el.find('.search').find('.results').empty();
 				});
+
+				return this;
 			}
 		},
 
