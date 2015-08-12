@@ -1122,8 +1122,7 @@
 		parents: [Alpha.ui.Element],
 		properties: {
 			id: null,
-			num_guests: 0,
-			guests: [],
+			guests: null,
 			notFoundMessage: 'No results found',
 
 			getOptions: new Function(),
@@ -1178,7 +1177,7 @@
 
 			renderGuest: function(guest) {
 				return 	'<div class="guest">' + 
-							'<input name="user_'+(++this.num_guests)+'" type="checkbox" checked>' +
+							'<input type="checkbox" checked>' +
 							this.renderResult(guest) +
 					    '</div>';
 			},
@@ -1233,6 +1232,14 @@
 				}
 
 				return this;
+			},
+
+			addGuests: function(guests) {
+				guests.forEach(function(guest) {
+					this.addGuest(guest);
+			    }.bind(this));
+
+			    return this;
 			},
 
 			removeGuest: function(guest) {
@@ -1323,6 +1330,7 @@
 		},
 
 		init: function() {
+			this.guests = [];
 			_functions.applyDOMElement.call(this, '$container', this.$container, this.show);
 		}
 	});
